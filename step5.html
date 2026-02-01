@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div id="root2"></div>
+    <!-- 명령형  방식 (전통적인 JS) -->
+    <script>
+      const root = document.getElementById("root");
+      const btn = document.createElement("button");
+      btn.innerText = "JS 클릭";
+      btn.onclick = () => alert("clicked!");
+      root.appendChild(btn);
+    </script>
+    <!-- 선언현 방식(React) -->
+    <script type="text/babel">
+      function App() {
+        return <button onClick={() => alert("clicked!")}>REACT 클릭</button>;
+      }
+      const root2 = ReactDOM.createRoot(document.getElementById("root2"));
+      root2.render(<App />);
+    </script>
+  </body>
+</html>
