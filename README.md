@@ -95,3 +95,17 @@
 
 - 우리는 결과만 말함. “이 화면에는 이런 버튼이 있어야 해”라고 선언
 - DOM 생성, 이벤트 연결 같은 과정은 React가 알아서 처리, 그래서 선언형
+
+### 요약
+
+1. 브라우저는 JSX를 직접 이해하지 못하므로 Babel이 필요하다.
+
+2. Babel은 JSX를 React.createElement 형태로 변환한다.
+
+3. React.createElement는 실제 DOM 이 아니라 VIRTUAL DOM 객체를 생성한다.
+
+4. ReactDOM은 Virtual DOM 설계도를 실제 DOM에 반영한다.
+
+5. 선언형 프로그래밍은 “UI의 상태”만 정의하고, 실행 절차는 React가 담당한다.
+
+6. React의 핵심 가치는 “복잡한 UI를 상태 기반으로 일관성 있게 관리”하는 것이다.
