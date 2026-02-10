@@ -11,34 +11,44 @@
       crossorigin
     ></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      .title {
+        display: flex;
+        align-items: center;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
     <script type="text/babel">
       function Emoji() {
-        return <>🧑‍💻</>;
+        return (
+          <div className="emoji" aria-label="dev">
+            🧑‍💻
+          </div>
+        );
       }
       function Title({ name }) {
-        return (
-          <>
-            <Emoji /> Welcome, {name}!
-          </>
-        );
+        return <h2>Welcome, {name}!</h2>;
       }
       function UserInfo({ age, country }) {
         return (
-          <>
+          <div>
             <p>Age: {age}</p>
             <p>Country: {country}</p>
-          </>
+          </div>
         );
       }
       function ProfileHeader({ name, age, country }) {
         return (
-          <>
-            <Title name={name} />
+          <header>
+            <div className="title">
+              <Emoji />
+              <Title name={name} />
+            </div>
+
             <UserInfo age={age} country={country} />
-          </>
+          </header>
         );
       }
       const root = ReactDOM.createRoot(document.getElementById("root"));
