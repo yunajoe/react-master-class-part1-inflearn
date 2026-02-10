@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function Emoji() {
+        return <>🧑‍💻</>;
+      }
+      function Title({ name }) {
+        return (
+          <>
+            <Emoji /> Welcome, {name}!
+          </>
+        );
+      }
+      function UserInfo({ age, country }) {
+        return (
+          <>
+            <p>Age: {age}</p>
+            <p>Country: {country}</p>
+          </>
+        );
+      }
+      function ProfileHeader({ name, age, country }) {
+        return (
+          <>
+            <Title name={name} />
+            <UserInfo age={age} country={country} />
+          </>
+        );
+      }
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<ProfileHeader name="yuna" age={20} country="korea" />);
+    </script>
+  </body>
+</html>
