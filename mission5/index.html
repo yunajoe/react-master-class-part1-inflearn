@@ -15,48 +15,72 @@
   <body>
     <div id="root"></div>
     <script type="text/babel">
-      // ===== 데이터 샘플 =====
-      const fruits = ["사과", "바나나", "체리"];
-      const fruitsEmpty = [];
-
-      const products = [
-        { id: 1, name: "Keyboard", price: 30000 },
-        { id: 2, name: "Mouse", price: 15000 },
-        { id: 3, name: "Monitor", price: 220000 },
-      ];
-      const productsEmpty = [];
-
-      function PrintFruits() {
-        return fruits.map((fruit) => {
-          return <p>{fruit}</p>;
-        });
+      function FruitList({ items }) {
+        const safe = items ?? [];
+        if (safe.length === 0) {
+          return <p>표시할 과일이 없습니다.</p>;
+        }
+        return (
+          <ul>
+            {safe.map((fruit) => (
+              <li key={fruit}>{fruit}</li>
+            ))}
+          </ul>
+        );
+      }
+      function CheapProducts({ items, max = 100000 }) {
+        const safe = items ?? [];
+        const cheap = safe.filter(
+          (p) => typeof p.price === "number" && p.price <= max,
+        );
+        if (cheap.length <= 0) {
+          return <em>조건에 맞는 상품이 없습니다.</em>;
+        }
+        return (
+          <ul>
+            {cheap.map((p) => (
+              <li key={p.id}>
+                {p.name} - {p.price.toLocaleString()}원
+              </li>
+            ))}
+          </ul>
+        );
       }
 
-      function FilterProduct({ query, maxPrice }) {
-        const result = products.filter(
-          ({ name, price }) => name.includes(query) && price <= maxPrice,
-        );
-        const safeResult = result ?? [];
-        if (safeResult.length === 0) {
-          return <h3>제품이 없습니다.</h3>;
-        }
-        return safeResult.map((item) => (
-          <div
-            style={{ display: "flex", alignItems: "center", columnGap: "10px" }}
-          >
-            <p>아이템이름: {item.name}</p>
-            <p>가격: {item.price}</p>
-          </div>
+      function ProductSearch({ items, query, maxPrice = 20000 }) {
+        const safe = items ?? [];
+        const q = query.trim().toLowerCase();
+        const result = safe.filter((item) => {
+          const nameCheck = item.name.trim().toLowerCase().includes(q);
+          const priceCheck =
+            typeof item.price === "number" && item.price <= maxPrice;
+          return nameCheck && priceCheck;
+        });
+
+        return result.map((item) => (
+          <ul>
+            <li>{item.name}</li>
+            <li>{item.price.toLocaleString()}원</li>
+          </ul>
         ));
       }
 
+      function App() {
+        const fruits = ["사과", "바나나", "체리"];
+        const products = [
+          { id: 1, name: "Keyboard", price: 30000 },
+          { id: 2, name: "Mouse", price: 15000 },
+          { id: 3, name: "Monitor", price: 220000 },
+        ];
+        return (
+          <>
+            <FruitList items={fruits} />
+            <CheapProducts items={products} />
+          </>
+        );
+      }
       const root = ReactDOM.createRoot(document.getElementById("root"));
-      root.render(
-        <>
-          <PrintFruits />
-          <FilterProduct query="o" maxPrice={50000} />
-        </>,
-      );
+      root.render(<App />);
     </script>
   </body>
 </html>
