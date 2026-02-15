@@ -9,7 +9,7 @@ function Form() {
   };
 
   return (
-    <form style={{ border: "3px solid blue" }} onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <input
         value={email}
         onChange={(e) => {
