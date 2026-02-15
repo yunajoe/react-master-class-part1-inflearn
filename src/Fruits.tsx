@@ -14,10 +14,15 @@ function Fruits() {
     `;
     console.log(log);
   };
+
   return (
     <ul>
       {fruitsArray.map((fruit, index) => (
-        <li key={index} onClick={(event) => handleClick(fruit, index, event)}>
+        <li
+          key={index}
+          onClick={(event) => handleClick(fruit, index, event)}
+          data-fruit={fruit}
+        >
           <p>아이템: {fruit}</p>
         </li>
       ))}
