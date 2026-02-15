@@ -27,6 +27,7 @@ function Fruits() {
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    console.log("keydown");
     if (e.key === "Enter" && !e.nativeEvent.isComposing) {
       setFruitsList((prev) => {
         return [...prev, addItem];
@@ -41,6 +42,9 @@ function Fruits() {
         <input
           value={addItem}
           onKeyDown={handleKeyDown}
+          onKeyUp={() => {
+            console.log("keyup");
+          }}
           onChange={(e) => {
             setAddItem(e.target.value);
           }}

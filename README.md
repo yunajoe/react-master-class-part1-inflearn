@@ -79,3 +79,41 @@ const [isComposing, setIsComposing] = useState(false);
   };
 
 ```
+
+## 3. 여러 이벤트
+
+1.  onKeydown, onKeyup (키보드 이벤트)
+
+```md
+a) onKeydown
+
+- 키를 눌렀을때 발생하는 이벤트
+
+b) onKeyup
+
+- 눌렀던 키를 뗐을 때 발생하는 이벤트
+```
+
+2.  onSubmit (폼 이벤트)
+
+```md
+- 사용자가 폼을 제출할 때 발생하는 이벤트
+```
+
+3.  onMouseEnter, onMouseLeave,onContextMenu (마우스 이벤트)
+
+```md
+a) onMouseEnter
+
+- 마우스 커서가 요소 안으로 들어올 때 발생
+  ex) 툴팁 표시, hover 효과
+
+b) onMouseLeave
+
+- 마우스 커서가 요소 밖으로 나갈 때 발생
+  ex) 툴팁 숨김, hover 해제
+
+c) onContextMenu
+
+- 마우스 오른쪽 버튼 클릭 시 발생
+```
