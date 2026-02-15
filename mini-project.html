@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Mini Blog</title>
+    <!-- React & ReactDOM (UMD) -->
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <!-- Babel: JSX 런타임 변환(학습용) -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        margin: 24px;
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      .emoji {
+        font-size: 24px;
+      }
+      .panel {
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+      .card {
+        padding: 12px;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+      .muted {
+        color: #666;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      // 1) 컴포넌트 합성(Header)
+      function Emoji() {
+        return (
+          <div className="emoji" aria-label="dev">
+            🧑‍💻
+          </div>
+        );
+      }
+      function Title() {
+        return <h1>Mini Blog</h1>;
+      }
+      function Header() {
+        return (
+          <header className="header">
+            <Emoji />
+            <Title />
+          </header>
+        );
+      }
+
+      // 2) Panel(children) — 어떤 내용이든 래핑
+      function Panel({ children }) {
+        return <div className="panel">{children}</div>;
+      }
+
+      // 3) PostCard(props) — 읽기 전용 입력
+      function PostCard({ title, excerpt, tags = [] }) {
+        return (
+          <article className="card">
+            <h3>{title}</h3>
+            <p className="muted">{excerpt}</p>
+            <ul>
+              {tags.map((tag) => (
+                <li key={tag}>#{tag}</li>
+              ))}
+            </ul>
+          </article>
+        );
+      }
+
+      // 4) 데이터(단일 진실의 근원)
+      const posts = [
+        {
+          id: 101,
+          title: "컴포넌트란?",
+          excerpt: "작은 조각을 조합해 큰 UI를 만듭니다.",
+          tags: ["react", "component"],
+        },
+        {
+          id: 102,
+          title: "props 이해",
+          excerpt: "함수 인자처럼 외부 데이터를 받습니다.",
+          tags: ["react", "props"],
+        },
+        {
+          id: 103,
+          title: "리스트 렌더링",
+          excerpt: "map과 filter를 활용해 배열을 그립니다.",
+          tags: ["react", "list", "map"],
+        },
+      ];
+
+      // 5) 필터 + map 체이닝, key 사용
+      function PostList({ query = "" }) {
+        const q = query.trim().toLowerCase();
+        const filtered = posts.filter((p) => p.title.toLowerCase().includes(q));
+        return (
+          <Panel>
+            <h2>Posts {q && <span className="muted">— “{q}”</span>}</h2>
+            {filtered.map((p) => (
+              <PostCard
+                key={p.id}
+                title={p.title}
+                excerpt={p.excerpt}
+                tags={p.tags}
+              />
+            ))}
+            {filtered.length === 0 && (
+              <p className="muted">검색 결과가 없습니다.</p>
+            )}
+          </Panel>
+        );
+      }
+
+      // 6) 최상위 합성
+      function App() {
+        return (
+          <>
+            <Header />
+            {/* children 연습 */}
+            <Panel>
+              <p>환영합니다! 아래에서 포스트 목록을 확인하세요.</p>
+            </Panel>
+            {/* 리스트 + key + filter/map */}
+            <PostList query="리스트" />
+          </>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
