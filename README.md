@@ -96,9 +96,55 @@ b) onKeyup
 
 2.  onSubmit (폼 이벤트)
 
-```md
+````md
 - 사용자가 폼을 제출할 때 발생하는 이벤트
+- 사용자가 form을 제출하는 방법은 크게 2가지이다.
+  a) form 태그의 onSummit 이벤트
+
+  b) 인풋 태그 혹은 버튼 태그를 만들어서 사용하는 방법 (type="submit")
+
+- form의 onSubmit
+
+```javascript
+  const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    alert("submit 폼 제출");
+  };
+
+  return (
+    <form style={{ border: "3px solid blue" }} onSubmit={handleSubmit}>
+      <input
+        value={email}
+        onChange={(e) => {
+          setEmail(e.target.value);
+        }}
+      />
+  )
+
 ```
+
+```javascript
+<input
+  type="submit"
+  onClick={(e) => {
+    e.preventDefault();
+    alert("폼 제출");
+  }}
+/>
+
+<button
+    type="submit"
+    onClick={(e) => {
+      e.preventDefault();
+      alert("폼 제출");
+    }}
+  >
+    폼 제출
+  </button>
+```
+````
+
+````
 
 3.  onMouseEnter, onMouseLeave,onContextMenu (마우스 이벤트)
 
@@ -116,4 +162,4 @@ b) onMouseLeave
 c) onContextMenu
 
 - 마우스 오른쪽 버튼 클릭 시 발생
-```
+````
