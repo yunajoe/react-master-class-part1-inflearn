@@ -1,4 +1,5 @@
 import "./App.css";
+import Button from "./Button.tsx";
 import Count from "./Count.tsx";
 import Input from "./Input.tsx";
 import Toggle from "./Toggle.tsx";
@@ -9,6 +10,7 @@ function App() {
       <Count />
       <Toggle />
       <Input />
+      <Button />
     </div>
   );
 }
