@@ -1,5 +1,6 @@
 import "./App.css";
 import Count from "./Count.tsx";
+import Input from "./Input.tsx";
 import Toggle from "./Toggle.tsx";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <div style={{ display: "flex", flexDirection: "column", rowGap: "10px" }}>
       <Count />
       <Toggle />
+      <Input />
     </div>
   );
 }

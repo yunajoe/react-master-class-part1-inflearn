@@ -1,16 +1,19 @@
-# React + Vite
+# section5. state의 이해와 활용
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 미션을 통해 알게 된 점
 
-Currently, two official plugins are available:
+## 1. controlledInput과 uncontrolledInput
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- controlledInput은 react의 state로 값을 관리하는 방법. 즉, value와 onChange로 값을 관리한다. 이는 React가 값을 관리할 수 있다.
 
-## React Compiler
+```javascript
+<input value={name} onChange={(e) => setName(e.target.value)} />
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- uncontrolledInput은 DOM이 입력값을 관리하는 방법. useRef()는 돔에 직접 접근할 수 있게 해 주는 통로.
+- 물리적 상태가 필요할 시(input에 focus, 스크롤 위치, 높이 측정하기) uncontrolled 방법을 사용해야 한다. 왜냐하면은 state는 데이터를 관리하여 그리는 부분 전 필요한 것이고 focus/스크롤/크기 측정은 이미 그려진 화면을 조작하거나 읽는것이기 때문이다.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```javascript
+const inputRef = useRef();
+<input ref={inputRef} />;
+```
