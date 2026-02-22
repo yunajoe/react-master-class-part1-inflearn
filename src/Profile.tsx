@@ -99,7 +99,6 @@ function Profile() {
             <div
               key={item.id}
               style={{
-                border: "5px solid green",
                 display: "flex",
                 columnGap: "10px",
               }}
@@ -115,7 +114,6 @@ function Profile() {
         </div>
         <div
           style={{
-            border: "5px solid red",
             display: "flex",
             flexDirection: "column",
             rowGap: "20px",
