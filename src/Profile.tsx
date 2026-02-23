@@ -65,7 +65,7 @@ function Profile() {
   };
 
   return (
-    <div>
+    <div style={{ border: "5px solid #8B98A3", padding: "6px" }}>
       <div style={{ display: "flex" }}>
         <div>
           {data.map((item) => (

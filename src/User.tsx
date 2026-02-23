@@ -24,7 +24,7 @@ function User() {
     setUserInfo(InitData);
   };
   return (
-    <div>
+    <div style={{ border: "5px solid #8B98A3", padding: "6px" }}>
       <p>
         {userInfo.name} - {userInfo.address.city} ({userInfo.address.zipcode})
       </p>

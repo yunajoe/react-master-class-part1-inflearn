@@ -1,12 +1,33 @@
 import "./App.css";
-import User from "./User";
-// { name: "영희", age: 25, address: { city: "서울", zipcode: "12345" } }
+import Todo from "./Todo.tsx";
+/**
+ * 
+ * @returns 
+ * # 초기 상태
+공부하기
+운동하기
+
+# [할 일 추가] 클릭 후
+공부하기
+운동하기
+청소하기
+
+# [삭제] 클릭 후
+운동하기
+청소하기
+
+# 체크박스 클릭 시
+공부하기 (✅)
+운동하기 (✅)
+ * 
+ */
 
 function App() {
   return (
     <>
-      {/* <Profile /> */}
-      <User />
+      {/* <Profile />
+      <User /> */}
+      <Todo />
     </>
   );
 }
