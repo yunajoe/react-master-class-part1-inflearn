@@ -1,13 +1,14 @@
 import "./App.css";
-import Post from "./Post.tsx";
+import BasKet from "./BasKet.tsx";
 
 function App() {
   return (
     <>
-      {/* <Profile />
-      <User /> */}
+      {/* <Profile /> */}
+      {/* <User /> */}
       {/* <Todo /> */}
-      <Post />
+      {/* <Post /> */}
+      <BasKet />
     </>
   );
 }
