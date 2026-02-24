@@ -8,6 +8,7 @@ const InitTotoData = [
 function Todo() {
   const [todoList, setTodoList] = useState(InitTotoData);
   const [newTodo, setNewTodo] = useState("");
+  const [isCompleteTodoHide, setIsCompleteTodoHide] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim();
@@ -17,7 +18,7 @@ function Todo() {
     if (!newTodo) return;
     setTodoList((prev) => [
       ...prev,
-      { id: todoList.length, todo: newTodo, checked: false },
+      { id: Date.now(), todo: newTodo, checked: false },
     ]);
     setNewTodo("");
   };
@@ -28,32 +29,58 @@ function Todo() {
     setTodoList(remainTodoList);
   };
 
+  const handleToggle = (
+    e: ChangeEvent<HTMLInputElement, HTMLInputElement>,
+    id: number,
+  ) => {
+    setTodoList((prev) => {
+      return prev.map((todo) =>
+        todo.id === id ? { ...todo, checked: e.target.checked } : todo,
+      );
+    });
+  };
+
+  const visibleTodos = isCompleteTodoHide
+    ? todoList.filter((item) => !item.checked)
+    : todoList;
+
   return (
     <div>
-      <div style={{ display: "flex", flexDirection: "column", rowGap: "10px" }}>
+      <div style={{ display: "flex", alignItems: "center", columnGap: "20px" }}>
         <div style={{ display: "flex", columnGap: "6px" }}>
           <input value={newTodo} onChange={handleChange} />
           <button onClick={handleAddTodo}>할 일 추가 하기</button>
         </div>
-        <button onClick={handleDelete}>삭제하기</button>
+        <div>
+          <label>
+            완료된 항목 숨기기
+            <input
+              type="checkbox"
+              checked={isCompleteTodoHide}
+              onChange={(e) => {
+                const checked = e.target.checked;
+                setIsCompleteTodoHide(checked);
+              }}
+            />
+          </label>
+        </div>
+        {/* <button onClick={handleDelete}>삭제하기</button> */}
       </div>
 
-      {todoList.map((item) => (
-        <div key={item.id} style={{ display: "flex", columnGap: "6px" }}>
+      {visibleTodos.map((item) => (
+        <div
+          key={item.id}
+          style={{
+            display: "flex",
+            columnGap: "6px",
+            border: "5px solid blue",
+            marginBottom: "10px",
+          }}
+        >
           <input
             type="checkbox"
-            id={String(item.id)}
             checked={item.checked}
-            onChange={(e) => {
-              const checkValue = e.target.checked;
-              setTodoList((prev) => {
-                return prev.map((item) =>
-                  String(item.id) === e.target.id
-                    ? { ...item, checked: checkValue }
-                    : item,
-                );
-              });
-            }}
+            onChange={(e) => handleToggle(e, item.id)}
           />
           <h3>{item.todo}</h3>
         </div>
