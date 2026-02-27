@@ -1,10 +1,16 @@
-## 인프런 강의 "React 마스터 클래스: Part 1 - 미션으로 깨우치는 렌더링 본질과 설계" 를 바탕으로 공부한 레포지토리
+# React + Vite
 
-### section1
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-- Babel를 활용하여 직접 React를 만들어보고, 선언형 React의 의미 알아보기
-  https://github.com/yunajoe/react-master-class-part1-inflearn/tree/mission1
+Currently, two official plugins are available:
 
-### section2
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-### section3
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
