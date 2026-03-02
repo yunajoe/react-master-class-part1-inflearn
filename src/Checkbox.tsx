@@ -1,12 +1,18 @@
 interface CheckboxProps {
   checked: false;
-  handleCheck: () => void;
+  setChecked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Checkbox({ checked, handleCheck }: CheckboxProps) {
+function Checkbox({ checked, setChecked }: CheckboxProps) {
   return (
     <div>
-      <input type="checkbox" checked={checked} onChange={handleCheck} />
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={(e) => {
+          setChecked(e.target.checked);
+        }}
+      />
       <label>알림받기</label>
     </div>
   );
