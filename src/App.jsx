@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import SignUpForm from "./SignUpForm.tsx";
+import CustomForm from "./CustomForm.tsx";
 
 function App() {
   const [checked, setChecked] = useState(false);
@@ -10,8 +10,9 @@ function App() {
       {/* <Checkbox checked={checked} setChecked={setChecked} />
       <Summary checked={checked} />
       <Form />
-      <ControlledInput /> */}
-      <SignUpForm />
+      <ControlledInput />
+      <SignUpForm /> */}
+      <CustomForm />
     </>
   );
 }
