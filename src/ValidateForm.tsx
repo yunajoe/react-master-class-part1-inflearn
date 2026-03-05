@@ -11,7 +11,6 @@ function ValidateForm() {
     email: "",
     agree: "",
   });
-  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
