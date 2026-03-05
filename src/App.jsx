@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import CustomForm from "./CustomForm.tsx";
+import ValidateForm from "./ValidateForm.tsx";
 
 function App() {
   const [checked, setChecked] = useState(false);
@@ -12,7 +12,8 @@ function App() {
       <Form />
       <ControlledInput />
       <SignUpForm /> */}
-      <CustomForm />
+      {/* <CustomForm /> */}
+      <ValidateForm />
     </>
   );
 }
