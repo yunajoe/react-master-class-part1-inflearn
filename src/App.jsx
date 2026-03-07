@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import Count from "./Count";
+import DarkModeToggle from "./DarkModeToggle";
 
 function App() {
   const [close, setClose] = useState(false);
@@ -27,7 +27,8 @@ function App() {
       {!close2 && <Modal onClose={handleClose2} num={2} />} */}
       {/* {!unmount && <WindowsizeTracker />}
       <button onClick={handleUnmount}>언마운트시키기</button> */}
-      <Count />
+      {/* <Count /> */}
+      <DarkModeToggle />
     </>
   );
 }
