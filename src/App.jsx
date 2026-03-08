@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import DarkModeToggle from "./DarkModeToggle";
+import LiveSearch from "./LiveSearch";
 
 function App() {
   const [close, setClose] = useState(false);
@@ -28,7 +28,8 @@ function App() {
       {/* {!unmount && <WindowsizeTracker />}
       <button onClick={handleUnmount}>언마운트시키기</button> */}
       {/* <Count /> */}
-      <DarkModeToggle />
+      {/* <DarkModeToggle /> */}
+      <LiveSearch />
     </>
   );
 }

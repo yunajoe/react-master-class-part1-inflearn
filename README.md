@@ -7,3 +7,5 @@
 | `[]` (빈 배열) | 마운트 시 1회         | 언마운트 시 1회                             |
 | `[deps]`       | 마운트 + deps 변경 시 | deps 변경 시 이전 effect의 cleanup 실행     |
 | 생략           | 매 렌더링 시          | 다음 렌더링 전에 이전 effect의 cleanup 실행 |
+
+2. abortController
