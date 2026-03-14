@@ -1,12 +1,13 @@
 import "./App.css";
-import PostListSearch from "./PostListSearch.jsx";
+import ProductListBase from "./ProductListBase";
 
 function App() {
   return (
     <>
       {/* <PostList />; */}
       {/* <PostListBase /> */}
-      <PostListSearch />
+      {/* <PostListSearch /> */}
+      <ProductListBase />
     </>
   );
 }
