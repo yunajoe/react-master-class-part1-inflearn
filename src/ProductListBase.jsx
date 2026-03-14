@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import instance from "./lib/axios";
-import { normalizeAxiosError } from "./lib/error";
 
 function ProductListBase() {
   const [products, setProducts] = useState([]);
@@ -17,8 +16,7 @@ function ProductListBase() {
         setProducts(res.data);
         setError(null);
       } catch (error) {
-        if (error.code === "ERR_CANCELED") return;
-        setError(normalizeAxiosError(error));
+        setError(error.message);
       } finally {
         setLoading(false);
       }

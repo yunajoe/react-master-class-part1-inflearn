@@ -1,4 +1,5 @@
 import axios from "axios";
+import { normalizeAxiosError } from "./error";
 //  axios 인터셉터로 공통 에러 가공/토큰 주입/로깅.
 const instance = axios.create({
   baseURL: "https://fakestoreapi.com",
@@ -17,6 +18,7 @@ instance.interceptors.request.use(
     return config;
   },
   function (error) {
+    console.log("요청 에러", error);
     // 요청 오류가 있는 작업 수행
     return Promise.reject(error);
   },
@@ -32,6 +34,10 @@ instance.interceptors.response.use(
     return response;
   },
   function (error) {
+    console.log("응답 에러", error);
+    const errorMessage = normalizeAxiosError(error);
+    error.message = errorMessage;
+
     // 2xx 외의 범위에 있는 상태 코드는 이 함수를 트리거 합니다.
     // 응답 오류가 있는 작업 수행
     return Promise.reject(error);
