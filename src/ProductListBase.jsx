@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import instance from "./lib/axios";
+import { normalizeAxiosError } from "./lib/error";
 
 function ProductListBase() {
   const [products, setProducts] = useState([]);
@@ -11,11 +12,12 @@ function ProductListBase() {
     const fetchData = async () => {
       try {
         const res = await instance.get("/products", {
-          signal: controller.abort(),
+          signal: controller.signal,
         });
         setProducts(res.data);
+        setError(null);
       } catch (error) {
-        if (error.code === "ERROR_CANCELED") return;
+        if (error.code === "ERR_CANCELED") return;
         setError(normalizeAxiosError(error));
       } finally {
         setLoading(false);
@@ -24,10 +26,10 @@ function ProductListBase() {
 
     fetchData();
     return () => {
-      console.log("cleanup");
       controller.abort("cancel");
     };
   }, []);
+
   if (loading) return <p>불러오는 중...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
   return (
