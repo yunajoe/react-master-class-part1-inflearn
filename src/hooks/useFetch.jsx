@@ -1,47 +1,60 @@
-// useFetchProducts(params) 훅 구현 (params: { keyword?, category?, sort? }).
-// 훅은 { data, loading, error, refetch }
-
-// /products?${qs.toString()}, products
-
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import instance from "../services/apiClient";
 
-function useFetch(url, params = { keyword: "", category: "", sort: "" }) {
+function useFetch(params = { keyword: "", category: "", sort: "" }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const controllerRef = useRef(null);
+
   const { keyword, category, sort } = params;
+  const qs = new URLSearchParams({ sort });
+
+  const url = category
+    ? `https://fakestoreapi.com/products/category/${encodeURIComponent(category)}?${qs}`
+    : `https://fakestoreapi.com/products?${qs}`;
+
+  const fetchData = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+
+    if (controllerRef.current) {
+      controllerRef.current.abort();
+    }
+    const controller = new AbortController();
+    controllerRef.current = controller;
+
+    try {
+      const res = await instance.get(url, {
+        signal: controller.signal,
+      });
+      setData(res.data);
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        return;
+      }
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }, [keyword, category, sort]);
 
   useEffect(() => {
-    const controller = new AbortController();
-    const fetchData = async () => {
-      try {
-        const res = await instance.get(url, {
-          signal: controller.signal,
-        });
-        console.log("RES ===>", res);
-        setData(res.data);
-        setError(null);
-      } catch (error) {
-        console.log("error", error, error.name);
-        if (axios.isCancel(error)) {
-          console.log("취소!");
-          return;
-        }
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchData();
     return () => {
-      controller.abort();
+      if (controllerRef.current) {
+        controllerRef.current.abort();
+      }
     };
-  }, []);
+  }, [fetchData]);
 
-  return { data, loading, error };
+  const refetch = useCallback(() => {
+    fetchData();
+  }, [fetchData]);
+
+  return { data, loading, error, refetch };
 }
 
 export default useFetch;
