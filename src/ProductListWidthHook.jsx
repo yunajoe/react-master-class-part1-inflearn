@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useDebounce from "./hooks/useDebounce";
 import useFetch from "./hooks/useFetch";
 
 function ProductListWidthHook() {
@@ -6,8 +7,10 @@ function ProductListWidthHook() {
   const [category, setCategory] = useState("");
   const [sort, setSort] = useState("asc");
 
+  const debouncedValue = useDebounce(keyword, 1000);
+
   const { data, loading, error, refetch } = useFetch({
-    keyword,
+    debouncedValue,
     category,
     sort,
   });

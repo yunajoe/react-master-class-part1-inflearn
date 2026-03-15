@@ -10,11 +10,6 @@ function useFetch(params = { keyword: "", category: "", sort: "" }) {
   const controllerRef = useRef(null);
 
   const { keyword, category, sort } = params;
-  const qs = new URLSearchParams({ sort });
-
-  const url = category
-    ? `https://fakestoreapi.com/products/category/${encodeURIComponent(category)}?${qs}`
-    : `https://fakestoreapi.com/products?${qs}`;
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -25,6 +20,13 @@ function useFetch(params = { keyword: "", category: "", sort: "" }) {
     }
     const controller = new AbortController();
     controllerRef.current = controller;
+    const qs = new URLSearchParams();
+    if (sort) {
+      qs.set("sort", sort);
+    } // qs.toString() 과 같다
+    const url = category
+      ? `https://fakestoreapi.com/products/category/${encodeURIComponent(category)}?${qs}`
+      : `https://fakestoreapi.com/products?${qs}`;
 
     try {
       const res = await instance.get(url, {
