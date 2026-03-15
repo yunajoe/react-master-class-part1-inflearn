@@ -1,5 +1,5 @@
 import "./App.css";
-import ProductListBase from "./ProductListBase";
+import ProductListWidthHook from "./ProductListWidthHook";
 
 function App() {
   return (
@@ -7,7 +7,8 @@ function App() {
       {/* <PostList />; */}
       {/* <PostListBase /> */}
       {/* <PostListSearch /> */}
-      <ProductListBase />
+      {/* <ProductListBase /> */}
+      <ProductListWidthHook />
     </>
   );
 }
