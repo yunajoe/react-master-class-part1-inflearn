@@ -1,7 +1,8 @@
 ## 주제: 스타일링 전략과 UI 라이브러리 활용 (Styling Strategies & UI Libraries)
 
 1. 관심사의 분리 (Separation of Concerns)
-   1-1) 정의
+
+1-1) 정의
 
 - 관심사의 분리(Separation of Concerns) 는 “서로 다른 역할은 뒤섞지 말고, 나누어 관리하자”는 오래된 원칙
 - 전통 웹: HTML(구조) / CSS(디자인) / JS(동작) 가 명확히 분리되었습니다.
@@ -81,9 +82,10 @@ export default function Button({ variant = "primary", onClick, children }) {
 2. 스타일링 방식 비교 — Vanilla CSS, CSS Modules, CSS-in-JS
 
 2-1) 정의
-Vanilla CSS
-장점: 단순, 러닝커브 낮음, 빌드 의존 적음
-단점: 전역 네임스페이스로 충돌/덮어쓰기 추적 어려움
+
+- Vanilla CSS
+  장점: 단순, 러닝커브 낮음, 빌드 의존 적음
+  단점: 전역 네임스페이스로 충돌/덮어쓰기 추적 어려움
 
 ```css
 /* Vanilla CSS */
@@ -93,9 +95,9 @@ Vanilla CSS
 }
 ```
 
-CSS Modules
-장점: .module.css → 클래스 자동 고유화(해시)로 충돌 차단, 전통 CSS 그대로
-단점: 파일 분리 유지 필요, 동적 스타일링은 클래스 토글 위주
+- CSS Modules
+  장점: .module.css → 클래스 자동 고유화(해시)로 충돌 차단, 전통 CSS 그대로
+  단점: 파일 분리 유지 필요, 동적 스타일링은 클래스 토글 위주
 
 ```javascript
 // CSS Modules
@@ -103,9 +105,9 @@ import styles from "./Button.module.css";
 <button className={styles.button}>클릭</button>;
 ```
 
-CSS-in-JS (styled-components/Emotion)
-장점: 한 파일 내 응집도, props/state 기반 동적 스타일 탁월, 클래스 자동 고유화
-단점: 코드/스타일 혼재로 가독성 이슈, 런타임 주입에 따른 성능 주의
+- CSS-in-JS (styled-components/Emotion)
+  장점: 한 파일 내 응집도, props/state 기반 동적 스타일 탁월, 클래스 자동 고유화
+  단점: 코드/스타일 혼재로 가독성 이슈, 런타임 주입에 따른 성능 주의
 
 ```javascript
 // CSS-in-JS
