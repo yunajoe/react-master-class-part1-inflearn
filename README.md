@@ -1,37 +1,16 @@
-## 인프런 강의 "React 마스터 클래스: Part 1 - 미션으로 깨우치는 렌더링 본질과 설계" 를 바탕으로 공부한 레포지토리
+# React + Vite
 
-### section1
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-- Babel를 활용하여 직접 React를 만들어보고, 선언형 React의 의미 알아보기
+Currently, two official plugins are available:
 
-### section2
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-- 렌더링 메커니즘 알아보기
+## React Compiler
 
-### section3
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-- 컴퍼넌트와 데이터의 흐름 알아보기
+## Expanding the ESLint configuration
 
-### section4
-
-- 개발환경 세팅과 이벤트 다루기
-
-### section5
-
-- state의 이해와 활용
-
-### section6
-
-- 예측 가능한 코드와 불변성
-
-### section7
-
-- 상태 관리 심화와 폼 제출
-
-### section8
-
-- useEffect 완전 정복 - React의 비동기 세계
-
-### section9
-
-- 데이터 패칭과 비동기 처리 고도화
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
