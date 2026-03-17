@@ -1,8 +1,7 @@
-주제: 스타일링 전략과 UI 라이브러리 활용 (Styling Strategies & UI Libraries)
+## 주제: 스타일링 전략과 UI 라이브러리 활용 (Styling Strategies & UI Libraries)
 
 1. 관심사의 분리 (Separation of Concerns)
-
-1-1) 정의
+   1-1) 정의
 
 - 관심사의 분리(Separation of Concerns) 는 “서로 다른 역할은 뒤섞지 말고, 나누어 관리하자”는 오래된 원칙
 - 전통 웹: HTML(구조) / CSS(디자인) / JS(동작) 가 명확히 분리되었습니다.
