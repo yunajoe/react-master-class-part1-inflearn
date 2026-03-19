@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import LiveSearch from "./LiveSearch";
+import Modal from "./Test.jsx";
 
 function App() {
   const [close, setClose] = useState(false);
@@ -9,7 +9,6 @@ function App() {
   const [unmount, setUnmount] = useState(false);
 
   const handleClose = () => {
-    console.log("handleClose");
     setClose(true);
   };
   const handleClose2 = () => {
@@ -29,7 +28,8 @@ function App() {
       <button onClick={handleUnmount}>언마운트시키기</button> */}
       {/* <Count /> */}
       {/* <DarkModeToggle /> */}
-      <LiveSearch />
+      {/* <LiveSearch /> */}
+      {!close && <Modal onClose={handleClose} />}
     </>
   );
 }
