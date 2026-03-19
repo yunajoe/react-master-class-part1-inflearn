@@ -366,6 +366,17 @@ await fetchWithBackOff(() =>
 );
 ```
 
+c) SWR 패턴 (이전 데이터 유지 & 최산화)
+
+- SWR(“Stale-While-Revalidate”): “먼저 오래된(캐시) 데이터를 즉시 보여주고, 백그라운드에서 최신 데이터로 갱신” → 초기 응답성↑, 사용자 체감 속도↑.
+
+```md
+data === null → “처음” 경로: 로딩 UI 후 최초 fetch → setData.
+data가 이미 있음 → “SWR 경로”:
+setStale(true)로 이전 데이터 즉시 노출 + “새로고침 중…” 표시
+새 fetch 완료 시 데이터 교체 + setStale(false)
+```
+
 8. axios 에러 코드 정리
 
 | 코드명           | 의미               | 발생 상황                         |

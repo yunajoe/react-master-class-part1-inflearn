@@ -1,49 +1,39 @@
-async function fetchWithBackOff(fn, { retries = 3, base = 300 } = {}) {
-  let attempt = 0;
-  while (true) {
-    try {
-      return await fn();
-    } catch (e) {
-      if (attempt >= retries) throw e;
-      const wait = base * 2 ** attempt;
-      await new Promise((r) => setTimeout(r, wait));
-      attempt++;
-    }
-  }
-}
-function SearchBox() {
-  const [keyword, setKeyword] = useState("");
-  const [results, setResults] = useState([]);
-  const debouncedKeyword = useDebouncedValue(keyword, 400);
+import { useEffect } from "react";
+
+function Example() {
+  const [data, setData] = useState(null);
+  const [stale, setStale] = useState(false);
 
   useEffect(() => {
-    if (!debouncedKeyword) return;
     const controller = new AbortController();
-
-    const fetchData = async () =>
-      await fetchWithBackOff(() =>
-        apiClient.get(`/search?q=${encodeURIComponent(debouncedKeyword)}`, {
+    (async () => {
+      if (!data) {
+        const r = apiClient.get("/products", { signal: controller.signal });
+        setData(r.data);
+      } else {
+        setStale(true);
+        const r = await apiClient.get("/products", {
           signal: controller.signal,
-        }),
-      );
-
-    return () => controller.abort();
-  }, [debouncedKeyword]);
-
+        });
+        setData(r.data);
+        setStale(false);
+      }
+    })();
+  }, []);
   return (
-    <div>
-      <input
-        value={keyword}
-        onChange={(e) => setKeyword(e.target.value)}
-        placeholder="검색어"
-      />
-      <ul>
-        {results.map((i) => (
-          <li key={i.id}>{i.title}</li>
-        ))}
-      </ul>
-    </div>
+    <>
+      {stale && <p>새로고침 중...</p>}
+      {!data ? (
+        <p>로딩...</p>
+      ) : (
+        <ul>
+          {data.map((p) => (
+            <li key={p.id}>{p.title}</li>
+          ))}
+        </ul>
+      )}
+    </>
   );
 }
 
-export default SearchBox;
+export default Example;
